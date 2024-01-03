@@ -16,7 +16,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
       } else {
         resultArray.push({
           status: ele.status,
-          value: ele.reason,
+          value: `${ele.reason}`,
         });
       }
     });
