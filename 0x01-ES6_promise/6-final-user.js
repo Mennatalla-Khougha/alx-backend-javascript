@@ -9,7 +9,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
   return Promise.allSettled([user, photo]).then((results) => {
     results.map((ele) => ({
       status: ele.status,
-      value: ele.status === 'fulfilled' ? ele.value : ele.reason,
+      value: ele.status === 'fulfilled' ? ele.value : `${ele.reason},
     }));
   });
 }
