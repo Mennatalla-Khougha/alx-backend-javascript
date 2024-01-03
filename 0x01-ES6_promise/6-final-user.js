@@ -7,23 +7,10 @@ function handleProfileSignup(firstName, lastName, fileName) {
   const photo = uploadPhoto(fileName);
 
   return Promise.allSettled([user, photo])
-    .then((results) => {
-      const resArray = [];
-      results.forEach((ele) => {
-        if (ele.status === 'fulfilled') {
-          resArray.push({
-            status: ele.status,
-            value: ele.value,
-          });
-        } else {
-          resArray.push({
-            status: ele.status,
-            value: ele.reason,
-          });
-        }
-      });
-      return resArray;
-    });
+    .then((results) => results.map((ele) => ({
+      status: ele.status,
+      value: ele.status === 'fulfilled' ? ele.value : ele.reason,
+    })));
 }
 
 module.exports = handleProfileSignup;
