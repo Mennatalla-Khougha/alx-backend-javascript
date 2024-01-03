@@ -1,16 +1,19 @@
-// /* eslint-disable import/extensions */
 import signUpUser from './4-user-promise';
 import uploadPhoto from './5-photo-reject';
 
-function handleProfileSignup(firstName, lastName, fileName) {
-  const user = signUpUser(firstName, lastName);
-  const photo = uploadPhoto(fileName);
+export default function handleProfileSignup(firstName, lastName, fileName) {
+  const signUpUserPromise = signUpUser(firstName, lastName);
+  const uploadPhotoPromise = uploadPhoto(fileName);
 
-  return Promise.allSettled([user, photo])
-    .then((results) => results.map((ele) => ({
-      status: ele.status,
-      value: ele.status === 'fulfilled' ? ele.value : ele.reason,
-    })));
+  return Promise.allSettled([signUpUserPromise, uploadPhotoPromise]).then((values) => {
+    const result = [];
+    values.forEach((element) => {
+      if (element.status === 'fulfilled') {
+        result.push({ status: element.status, value: element.value });
+      } else {
+        result.push({ status: element.status, value: `${element.reason}` });
+      }
+    });
+    return result;
+  });
 }
-
-module.exports = handleProfileSignup;
