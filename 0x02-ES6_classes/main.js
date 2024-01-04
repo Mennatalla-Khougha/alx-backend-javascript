@@ -1,5 +1,9 @@
-import HolbertonClass from './8-hbtn_class';
+import listOfStudents from './9-hoisting.js';
 
-const hc = new HolbertonClass(12, 'Mezzanine');
-console.log(Number(hc));
-console.log(String(hc));
+console.log(listOfStudents);
+
+const listPrinted = listOfStudents.map(
+  (student) => student.fullStudentDescription,
+);
+
+console.log(listPrinted);
