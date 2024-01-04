@@ -1,4 +1,5 @@
-import Currency from './3-currency';
+import Airport from './7-airport';
 
-const dollar = new Currency('$', 'Dollars');
-console.log(dollar.displayFullCurrency());
+const airportSF = new Airport('San Francisco Airport', 'SFO');
+console.log(airportSF);
+console.log(airportSF.toString());
