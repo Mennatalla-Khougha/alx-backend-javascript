@@ -1,9 +1,9 @@
 export default function cleanSet(set, startString) {
-  if (startString === '') {
+  if (!startString) {
     return '';
   }
 
-  const string = Array.from(set)
+  const string = [...set]
     .filter((ele) => ele.startsWith(startString))
     .map((ele) => ele.slice(startString.length));
 
