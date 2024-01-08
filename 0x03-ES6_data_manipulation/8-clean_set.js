@@ -5,6 +5,6 @@ export default function cleanSet(set, startString) {
 
   return [...set]
     .filter((ele) => (ele !== undefined ? ele.startsWith(startString) : ''))
-    .map((ele) => (ele !== undefined ? ele.startsWith(startString.length) : ''))
+    .map((ele) => (ele !== undefined ? ele.slice(startString.length) : ''))
     .join('-');
 }
