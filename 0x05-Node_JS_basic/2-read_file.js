@@ -6,7 +6,7 @@ function countStudents(file) {
   try {
     const data = fs.readFileSync(file, 'utf-8');
     const lines = data.toString().split('\n');
-    for (let i = 1; i < lines.length; i++) {
+    for (let i = 1; i < lines.length; i += 1) {
       const line = lines[i];
       const fields = line.toString().split(',');
       const field = fields[3];
@@ -15,16 +15,16 @@ function countStudents(file) {
       if (!subjects[field]) {
         subjects[field] = { count: 0, names: [] };
       }
-      subjects[field].count++;
+      subjects[field].count += 1;
       subjects[field].names.push(firstName);
-      students++;
+      students += 1;
     }
     console.log(`Number of students: ${students}`);
-    Object.keys(subjects).forEach(field => {
+    Object.keys(subjects).forEach((field) => {
       console.log(`Number of students in ${field}: ${subjects[field].count}. List: ${subjects[field].names.join(', ')}`);
     });
   } catch (error) {
-    throw Error('Cannot load the database');
+    throw new Error('Cannot load the database');
   }
 }
 
