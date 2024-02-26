@@ -1,12 +1,11 @@
 const fs = require('fs');
 
 function countStudents(file) {
+  let students = 0;
+  const subjects = {};
   try {
     const data = fs.readFileSync(file, 'utf-8');
     const lines = data.toString().split('\n');
-    let students = 0;
-    const subjects = {};
-
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i];
       const fields = line.split(',');
@@ -24,7 +23,7 @@ function countStudents(file) {
     Object.keys(subjects).forEach(field => {
       console.log(`Number of students in ${field}: ${subjects[field].count}. List: ${subjects[field].names.join(', ')}`);
     });
-  } catch {
+  } catch (error) {
     throw new Error('Cannot load the database');
   }
 }
