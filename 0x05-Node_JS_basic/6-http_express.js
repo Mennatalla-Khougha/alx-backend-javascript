@@ -6,6 +6,6 @@ app.get('/', (req, res) => {
   res.send('Hello Holberton School!0');
 });
 
-app.listen(1245);
+app.listen(1245, () => {});
 
-module.exports = app
+module.exports = app;
