@@ -8,7 +8,7 @@ function countStudents(file) {
     const lines = data.toString().split('\n');
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i];
-      const fields = line.split(',');
+      const fields = line.toString().split(',');
       const field = fields[3];
       const firstName = fields[0];
 
