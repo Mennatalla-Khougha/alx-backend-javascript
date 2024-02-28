@@ -32,3 +32,16 @@ describe('calculateNumber', () => {
     assert.equal(calculateNumber(4.5, 1.7), 7);
   });
 });
+
+
+describe('calculateNumber - negative numbers', () => {
+  it('sum of a and b', () => {
+    assert.equal(calculateNumber(4.5, -1.7), 3);
+  });
+  it('sum of a and b', () => {
+    assert.equal(calculateNumber(-4.5, 1.7), -2);
+  });
+  it('sum of a and b', () => {
+    assert.equal(calculateNumber(-4.5, -1.7), -6);
+  });
+})
