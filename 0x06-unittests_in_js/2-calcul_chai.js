@@ -13,4 +13,5 @@ function calculateNumber (type, a, b) {
   }
 }
 
-export default calculateNumber;
+// export default calculateNumber;
+module.experts = calculateNumber
