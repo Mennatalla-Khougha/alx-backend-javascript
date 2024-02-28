@@ -41,8 +41,8 @@ describe("Cart page", function () {
 	});
 });
 
-describe("Available_payments page", () => {
-    it("check correct status for url", () => {
+describe("Available_payments page", function() {
+    it("check correct status for correct url", function() {
 	request.get("http://localhost:7865/available_payments", (err, res, body) => {
 	    if (err) {
 		expect(res.statusCode).to.not.equal(200);
@@ -51,47 +51,47 @@ describe("Available_payments page", () => {
 	    }
 	});
     });
-    it("check correct body content for url", () => {
-	const data = {json: true};
-	const payment = {
+    it("check correct body content for correct url", function() {
+	const option = {json: true};
+	const payLoad = {
 	    payment_methods: {
 		credit_cards: true,
 		paypal: false
 	    }
 	}
-	request.get("http://localhost:7865/available_payments", data, (err, res, body) => {
+	request.get("http://localhost:7865/available_payments", option, (err, res, body) => {
 	    if (err) {
 		expect(res.statusCode).to.not.equal(200);
 	    } else {
-		expect(body).to.deep.equal(payment);
+		expect(body).to.deep.equal(payLoad);
 	    }
 	});
     });
 });
 
 describe("Login", function() {
-    it("check correct status code for a good request", (done) => {
-	const data = {
+    it("check correct status code for request that's sent properly", function(done) {
+	const opt = {
 	    url: "http://localhost:7865/login",
 	    json: true,
 	    body: {
-		userName: 'JOE'
+			userName: 'JOE'
 	    }
 	};
-	request.post(data, function(err, res, body) {
+	request.post(opt, function(err, res, body) {
 	    expect(res.statusCode).to.equal(200);
 	    done();
 	});
     });
-    it("check correct content for a good request", (done) => {
-	const data = {
+    it("check correct content for request that's sent properly", function(done) {
+	const opts = {
 	    url: "http://localhost:7865/login",
 	    json: true,
 	    body: {
-		userName: 'JOE'
+			userName: 'JOE'
 	    }
 	};
-	request.post(data, function(err, res, body) {
+	request.post(opts, function(err, res, body) {
 	    if (err) {
 		expect(res.statusCode).to.not.equal(200);
 	    } else {
@@ -100,17 +100,17 @@ describe("Login", function() {
 	    done();
 	});
     });
-    it("check correct status code for a bad request", (done) => {
-	const data = {
+    it("check correct status code for request that's not sent properly", function(done) {
+	const op = {
 	    url: "http://localhost:7865/login",
 	    json: true,
 	    body: {
-		userName: 'JOE'
+			userName: 'JOE'
 	    }
 	};
-	request.post(data, function(err, res, body) {
+	request.post(op, function(err, res, body) {
 	    expect(res.statusCode).to.equal(404);
 	    done();
 	});
-  });
+    });
 });
