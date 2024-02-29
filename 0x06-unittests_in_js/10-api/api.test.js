@@ -1,44 +1,45 @@
 const request = require("request");
+const {describe, it} = require("mocha");
 const expect = require("chai").expect;
 
 describe("Index page", function() {
-    const data = {
+    const options = {
 	url: "http://localhost:7865/",
 	method: "GET"
     }
-    it("check correct status code", (done) => {
-	request(data, function(err, res, body) {
+    it("check correct status code", function(done) {
+	request(options, function(err, res, body) {
 	    expect(res.statusCode).to.equal(200);
 	    done();
 	});
     });
-    it("check correct content", (done) => {
-	request(data, function(err, res, body) {
-	    expect(body).to.contain("Welcome to the payment system");
+    it("check correct content", function(done) {
+	request(options, function(err, res, body) {
+	    expect(body).to.equal("Welcome to the payment system");
 	    done();
 	});
     });
 });
 
-describe("Cart page", function () {
-	it("check correct status code for correct url", function (done) {
-		request.get("http://localhost:7865/cart/50", function (err, res, body) {
-			expect(res.statusCode).to.equal(200);
-			done();
-		});
+describe("Cart page", function() {
+    it("check correct status code for correct url", function(done) {
+	request.get("http://localhost:7865/cart/12", function(err, res, body) {
+	    expect(res.statusCode).to.equal(200);
+	    done();
 	});
-	it("check correct content for correct url", function (done) {
-		request.get("http://localhost:7865/cart/50", function (err, res, body) {
-			expect(body).to.contain("Payment methods for cart 50");
-			done();
-		});
+    });
+    it("check correct content for correct url", function(done) {
+	request.get("http://localhost:7865/cart/12", function(err, res, body) {
+	    expect(body).to.equal("Payment methods for cart 12");
+	    done();
 	});
-	it("check correct status code for incorrect url", function (done) {
-		request.get("http://localhost:7865/cart/err", function (err, res, body) {
-			expect(res.statusCode).to.equal(404);
-			done();
-		});
+    });
+    it("check correct status code for incorrect url", function(done) {
+	request.get("http://localhost:7865/cart/kim", function(err, res, body) {
+	    expect(res.statusCode).to.equal(404);
+	    done();
 	});
+    });
 });
 
 describe("Available_payments page", function() {
@@ -75,7 +76,7 @@ describe("Login", function() {
 	    url: "http://localhost:7865/login",
 	    json: true,
 	    body: {
-			userName: 'JOE'
+		userName: 'JOE'
 	    }
 	};
 	request.post(opt, function(err, res, body) {
@@ -88,7 +89,7 @@ describe("Login", function() {
 	    url: "http://localhost:7865/login",
 	    json: true,
 	    body: {
-			userName: 'JOE'
+		userName: 'JOE'
 	    }
 	};
 	request.post(opts, function(err, res, body) {
@@ -105,7 +106,7 @@ describe("Login", function() {
 	    url: "http://localhost:7865/login",
 	    json: true,
 	    body: {
-			userName: 'JOE'
+		usame: 'JOE'
 	    }
 	};
 	request.post(op, function(err, res, body) {
